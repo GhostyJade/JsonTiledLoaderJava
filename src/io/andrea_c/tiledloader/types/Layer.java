@@ -14,29 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package io.andrea_c.tiledloader.level.layer;
+package io.andrea_c.tiledloader.types;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import io.andrea_c.tiledloader.types.Layer;
-
-public class TileLayer extends Layer {
+public class Layer {
 	
-	private int[] data;
-
-	public TileLayer(JSONObject layerData) {
-		super(layerData);
-		this.createLayer(layerData);
-	}
+	protected int height;
+	protected int id;
+	protected String name;
+	protected double opacity;
+	// private Type type;
+	protected boolean visible;
+	protected int width;
+	protected int x, y;
 	
-	private void createLayer(JSONObject layerData) {
-		JSONArray dataArray = layerData.getJSONArray("data");
-		this.data = new int[dataArray.length()];
-		for (int i = 0; i < dataArray.length(); i++) {
-			data[i] = dataArray.getInt(i);
-		}
+	public Layer(JSONObject layerData) {
 		this.height = layerData.getInt("height");
+		this.id = layerData.getInt("id");
+		this.name = layerData.getString("name");
+		this.opacity = layerData.getDouble("opacity");
+		this.visible = layerData.getBoolean("visible");
+		this.width = layerData.getInt("width");
+		this.x = layerData.getInt("x");
+		this.opacity = layerData.getInt("y");
 	}
 
 }

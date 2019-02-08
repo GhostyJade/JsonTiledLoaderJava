@@ -14,29 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package io.andrea_c.tiledloader.level.layer;
+package io.andrea_c.tiledloader.types;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import io.andrea_c.tiledloader.types.Layer;
-
-public class TileLayer extends Layer {
-	
-	private int[] data;
-
-	public TileLayer(JSONObject layerData) {
-		super(layerData);
-		this.createLayer(layerData);
-	}
-	
-	private void createLayer(JSONObject layerData) {
-		JSONArray dataArray = layerData.getJSONArray("data");
-		this.data = new int[dataArray.length()];
-		for (int i = 0; i < dataArray.length(); i++) {
-			data[i] = dataArray.getInt(i);
-		}
-		this.height = layerData.getInt("height");
-	}
+public class Tileset {
 
 }
