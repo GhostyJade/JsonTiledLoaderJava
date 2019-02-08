@@ -1,6 +1,5 @@
 # JsonTiledLoaderJava
 
-Gitter chat
 [![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/JsonTiledLoaderJava/community "Gitter chat")
 
 This is a simple library in development.
