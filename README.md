@@ -3,6 +3,7 @@
 [![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/JsonTiledLoaderJava/community "Gitter chat")
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.org/Andrea-C1201/JsonTiledLoaderJava.svg?branch=master)](https://travis-ci.org/Andrea-C1201/JsonTiledLoaderJava)
+[![Documentation Status](https://readthedocs.org/projects/jsontiledloaderdocs/badge/?version=latest)](https://jsontiledloaderdocs.readthedocs.io/en/latest/?badge=latest)
 [![Trello board](https://img.shields.io/badge/board-on%20trello-blue.svg)](https://trello.com/b/ycRiJrZu/jsontiledloader)
 
 This is a simple library in development.
