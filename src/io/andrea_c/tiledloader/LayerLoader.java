@@ -27,16 +27,18 @@ import org.json.JSONTokener;
 
 import io.andrea_c.tiledloader.exceptions.LayerNotFoundException;
 import io.andrea_c.tiledloader.level.layer.LayerType;
+import io.andrea_c.tiledloader.level.layer.ObjectLayer;
 import io.andrea_c.tiledloader.level.layer.TileLayer;
 import io.andrea_c.tiledloader.types.Layer;
 
 public class LayerLoader {
 
+	@Deprecated
 	public int[] layerTextureData;
 
 	private JSONObject rootNode;
 
-	public LayerLoader(String filename) {
+	public LayerLoader(String filename) { //TODO change String filename to an object that refers to the file
 		try {
 			JSONTokener tokener = new JSONTokener(new FileInputStream(filename));
 			rootNode = new JSONObject(tokener);
@@ -46,7 +48,7 @@ public class LayerLoader {
 		}
 	}
 
-	public Layer loadLayer(String layerName, LayerType type) throws LayerNotFoundException {
+	public Layer loadLayer(String layerName, LayerType type) throws LayerNotFoundException { //TODO remove type
 		JSONArray layerArray = rootNode.getJSONArray("layers");
 		List<JSONObject> objs = new ArrayList<JSONObject>();
 		for (int i = 0; i < layerArray.length(); i++) {
@@ -62,12 +64,11 @@ public class LayerLoader {
 		}
 		if (data != null) {
 			if(type == LayerType.TILE_LAYER) {
-				Layer layer = new Layer(data);
-				
+				TileLayer layer = new TileLayer(data);
 				return layer;
 			} else if(type == LayerType.OBJECT_GROUP) {
-				TileLayer layer = null;
-				return (Layer)layer;
+				ObjectLayer layer = new ObjectLayer(data);
+				return layer;
 			}
 
 		} else {

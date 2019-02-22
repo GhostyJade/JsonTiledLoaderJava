@@ -57,7 +57,7 @@ public class Map {
 	/**
 	 * A list of properties (name, value, type).
 	 */
-	// private Properties[] properties;
+	private Property[] properties;
 	/**
 	 * Rendering direction (orthogonal maps only)
 	 */
@@ -98,6 +98,10 @@ public class Map {
 	 * Number of tile columns
 	 */
 	private int width;
+	
+	public Map(JSONObject root) {
+		
+	}
 
 	/**
 	 * Initialize this object
@@ -130,59 +134,72 @@ public class Map {
 	 * Get all objects from a {@link JSONArray}
 	 */
 	private void dispatchJsonArray() {
-		/* TODO */}
+		/* TODO */
+	}
+	
+	private void dispatchProperties(JSONObject obj) {
+		JSONArray propertiesArray = obj.getJSONArray("properties");
+		this.properties = new Property[propertiesArray.length()];
+		for(int i = 0; i < propertiesArray.length(); i++) {
+			JSONObject currentObj = propertiesArray.getJSONObject(i);
+			properties[i] = new Property(currentObj.getString("name"), currentObj.getString("type"), currentObj.getString("value"));
+		}
+		
+	}
 
 	/**
-	 * @return the backgroundColor
+	 * @return an optional Hex-formatted color (#RRGGBB or #AARRGGBB)
 	 */
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
 	/**
-	 * @return the height
+	 * @return the number of tile rows
 	 */
 	public int getHeight() {
 		return height;
 	}
 
 	/**
-	 * @return the hexSidedLength
+	 * @return the length of the side of a hex tile in pixels
 	 */
 	public int getHexSidedLength() {
 		return hexSidedLength;
 	}
 
 	/**
-	 * @return the infinite
+	 * @return <code>true</code> if the map has infinite dimensions,
+	 *         <code>false</code> otherwise.
 	 */
 	public boolean isInfinite() {
 		return infinite;
 	}
 
 	/**
-	 * @return the layers
+	 * @return an array of {@link Layer}s
 	 */
 	public Layer[] getLayers() {
 		return layers;
 	}
 
 	/**
-	 * @return the nextLayerId
+	 * @return an auto-incremented value for each layer
 	 */
 	public int getNextLayerId() {
 		return nextLayerId;
 	}
 
 	/**
-	 * @return the nextObjectId
+	 * @return an auto-incremented value for each placed object
 	 */
 	public int getNextObjectId() {
 		return nextObjectId;
 	}
 
 	/**
-	 * @return the orientation
+	 * @return a value that specify the map type (orthogonal, isometric, staggered
+	 *         or hexagonal)
 	 */
 	public String getOrientation() {
 		return orientation;
@@ -238,21 +255,21 @@ public class Map {
 	}
 
 	/**
-	 * @return the type
+	 * @return map (since 1.0)
 	 */
 	public String getType() {
 		return type;
 	}
 
 	/**
-	 * @return the version
+	 * @return the JSON format version
 	 */
 	public String getVersion() {
 		return version;
 	}
 
 	/**
-	 * @return the width
+	 * @return the number of tile columns
 	 */
 	public int getWidth() {
 		return width;

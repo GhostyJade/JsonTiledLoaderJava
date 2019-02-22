@@ -18,7 +18,6 @@ package io.andrea_c.tiledloader;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.List;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -63,19 +62,6 @@ public class TextureLoader {
 			e.printStackTrace();
 		}
 	}
-	
-	public void loadTexture(int textureId) {
-		
-	}
-	
-	public List<Texture> loadTextures() {
-		final int TX_SINGLE_IMAGE_WIDTH = 0;
-		final int TX_SINGLE_IMAGE_HEIGHT = 0;
-		for(int y = 0; y < columns; y++) {
-			//for(int x = 0; x < )
-		}
-		return null;
-	}
 
 	@Override
 	public String toString() {
@@ -83,6 +69,34 @@ public class TextureLoader {
 				+ "\nImage height: " + this.fileImageHeight + "\nMargin: " + this.margin + "\nName: " + this.sheetName
 				+ "\nSpacing: " + this.spacing + "\nTile count: " + this.tileCount + "\nTile width: " + this.tileWidth
 				+ "\nTile height: " + this.tileHeight + "\nType: " + this.tileType;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+	
+	public int getColumns() {
+		return columns;
+	}
+	
+	public int getTileCount() {
+		return tileCount;
+	}
+	
+	public int getTileWidth() {
+		return tileWidth;
+	}
+	
+	public int getTileHeight() {
+		return tileHeight;
+	}
+	
+	public int getFileImageWidth() {
+		return fileImageWidth;
+	}
+	
+	public int getFileImageHeight() {
+		return fileImageHeight;
 	}
 
 }

@@ -24,6 +24,8 @@ import io.andrea_c.tiledloader.types.Layer;
 public class TileLayer extends Layer {
 	
 	private int[] data;
+	private int height;
+	private int width;
 
 	public TileLayer(JSONObject layerData) {
 		super(layerData);
@@ -37,6 +39,19 @@ public class TileLayer extends Layer {
 			data[i] = dataArray.getInt(i);
 		}
 		this.height = layerData.getInt("height");
+		this.width = layerData.getInt("width");
+	}
+	
+	public int[] getData() {
+		return data;
 	}
 
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
 }
