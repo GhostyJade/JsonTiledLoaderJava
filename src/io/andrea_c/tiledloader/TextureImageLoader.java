@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ public class TextureImageLoader {
 					sprites.add(image.getSubimage(j * width, i * height, width, height));
 				}
 			}
+			Collections.reverse(sprites);
 			for (int i = 0; i < sprites.size(); i++) {
 				BufferedImage img = sprites.get(i);
 				int w = img.getWidth();

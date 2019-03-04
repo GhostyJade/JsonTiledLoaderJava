@@ -16,6 +16,9 @@
  ******************************************************************************/
 package io.andrea_c.tiledloader.types;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -57,7 +60,7 @@ public class Map {
 	/**
 	 * A list of properties (name, value, type).
 	 */
-	private Property[] properties;
+	private List<Property> properties = new ArrayList<Property>();
 	/**
 	 * Rendering direction (orthogonal maps only)
 	 */
@@ -117,7 +120,7 @@ public class Map {
 		nextLayerId = data.getInt("nextlayerid");
 		nextObjectId = data.getInt("nextobjectid");
 		orientation = data.getString("orientation");
-		// TODO properties array ("properties");
+		properties = dispatchProperties(data);
 		renderOrder = data.getString("renderorder");
 		staggerAxis = data.getString("staggeraxis");
 		staggerIndex = data.getString("staggerindex");
@@ -137,14 +140,14 @@ public class Map {
 		/* TODO */
 	}
 	
-	private void dispatchProperties(JSONObject obj) {
+	private List<Property> dispatchProperties(JSONObject obj) {
+		List<Property> temp = new ArrayList<Property>();
 		JSONArray propertiesArray = obj.getJSONArray("properties");
-		this.properties = new Property[propertiesArray.length()];
 		for(int i = 0; i < propertiesArray.length(); i++) {
 			JSONObject currentObj = propertiesArray.getJSONObject(i);
-			properties[i] = new Property(currentObj.getString("name"), currentObj.getString("type"), currentObj.getString("value"));
+			temp.add(new Property(currentObj.getString("name"), currentObj.getString("type"), currentObj.getString("value")));
 		}
-		
+		return temp;
 	}
 
 	/**

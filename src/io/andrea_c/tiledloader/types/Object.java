@@ -16,6 +16,10 @@
  ******************************************************************************/
 package io.andrea_c.tiledloader.types;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /*
@@ -55,7 +59,7 @@ public class Object {
 	private boolean point;
 	//private Polygon[] poligon;
 	//private Polyline[] polyline;
-	private Property[] properties;
+	private List<Property> properties = new ArrayList<Property>();
 	private double rotation;
 	private String template;
 	private String text;
@@ -66,12 +70,23 @@ public class Object {
 	private double y;
 	
 	public Object(JSONObject data) {
-		this.id = data.getInt("id");
 		this.height = data.getDouble("height");
+		this.id = data.getInt("id");
+		//this.properties = dispatchProperties(data);
 		this.visible = data.getBoolean("visible");
 		this.width = data.getDouble("width");
 		this.x = data.getDouble("x");
 		this.y = data.getDouble("y");
+	}
+	
+	private List<Property> dispatchProperties(JSONObject obj) {
+		List<Property> temp = new ArrayList<Property>();
+		JSONArray propertiesArray = obj.getJSONArray("properties");
+		for(int i = 0; i < propertiesArray.length(); i++) {
+			JSONObject currentObj = propertiesArray.getJSONObject(i);
+			temp.add(new Property(currentObj.getString("name"), currentObj.getString("type"), currentObj.getString("value")));
+		}
+		return temp;
 	}
 	
 	public double getHeight() {
@@ -90,6 +105,17 @@ public class Object {
 		return y;
 	}
 	
+	public List<Property> getProperties() {
+		return properties;
+	}
 	
+	public boolean hasProperties() {
+		return !properties.isEmpty();
+	}
+	
+	//TODO
+	public Property getPropertyByName(String name) {
+		return null;
+	}
 	
 }
